@@ -81,7 +81,7 @@ end
 ruby_block 'upgrade-splunk-stop' do
   block { true }
   notifies :stop, 'service[splunk]', :immediately
-  only_if { CernerSplunk.splunk_installed?(node) && node['splunk']['package']['version'] != previous_splunk_version && !platform_family?('windows') }
+  only_if { CernerSplunk.splunk_installed?(node) && !platform_family?('windows') }
 end
 
 if platform_family? 'rhel', 'fedora', 'amazon'
